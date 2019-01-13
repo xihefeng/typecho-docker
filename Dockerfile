@@ -8,7 +8,7 @@ RUN apk --update --no-cache add nginx git unzip wget curl-dev libcurl && \
   tar zxvf typecho.tgz && \
   mv build/* /var/www && \
   rm -f typecho.tgz && \
-  chmod -R 777 /var/www \
+  chmod -R 777 /var/www 
 
 COPY plugins.sh /plugins.sh
 
