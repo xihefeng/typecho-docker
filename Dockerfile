@@ -1,7 +1,7 @@
 FROM php:7.2.10-fpm-alpine3.8
 LABEL maintainer="i@indexyz.me"
 # 去除  pdo pdo_mysql
-RUN apk --update --no-cache add nginx git unzip wget curl-dev libcurl && \
+RUN apk --update --no-cache add nginx git unzip pdo pdo_mysql wget curl-dev libcurl && \
   docker-php-ext-install mbstring bcmath curl && \
   mkdir -p /var/www && \
   wget http://typecho.org/build.tar.gz -O typecho.tgz && \
