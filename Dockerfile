@@ -1,4 +1,4 @@
-FROM php:7.2.10-fpm-alpine3.8
+FROM php:7.4-rc-fpm-alpine3.10
 LABEL maintainer="i@indexyz.me"
 # 去除  pdo pdo_mysql
 RUN apk --update --no-cache add nginx git unzip pdo pdo_mysql wget curl-dev libcurl && \
