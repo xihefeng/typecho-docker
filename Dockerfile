@@ -13,4 +13,5 @@ RUN  apk --update --no-cache add nginx git unzip wget curl-dev libcurl && \
 COPY run.sh /run.sh
 COPY config/nginx.conf /etc/nginx/nginx.conf
 RUN chmod +x /run.sh
+VOLUME /var/www
 ENTRYPOINT [ "sh", "/run.sh" ]
