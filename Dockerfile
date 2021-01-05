@@ -7,8 +7,7 @@ RUN  apk --update --no-cache add nginx git unzip wget curl-dev libcurl && \
   wget http://typecho.org/build.tar.gz -O typecho.tgz && \
   tar zxvf typecho.tgz && \
   mv build/* /var/www && \
-  rm -f typecho.tgz && \
-  cd /var/www  &&  chown -R www:www * 
+  rm -f typecho.tgz 
 
 COPY run.sh /run.sh
 COPY config/nginx.conf /etc/nginx/nginx.conf
