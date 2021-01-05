@@ -1,16 +1,16 @@
-FROM php:7.3-fpm-alpine3.9
-LABEL maintainer="i@indexyz.me"
-# 去除  pdo pdo_mysql
-RUN  apk --update --no-cache add nginx git unzip wget curl-dev libcurl && \
-  docker-php-ext-install pdo pdo_mysql mbstring bcmath curl && \
-  mkdir -p /var/www && \
-  wget http://typecho.org/build.tar.gz -O typecho.tgz && \
-  tar zxvf typecho.tgz && \
-  mv build/* /var/www && \
-  rm -f typecho.tgz 
-
-COPY run.sh /run.sh
-COPY config/nginx.conf /etc/nginx/nginx.conf
-RUN chmod +x /run.sh
-VOLUME /var/www
-ENTRYPOINT [ "sh", "/run.sh" ]
+FROM php:fpm-alpine                                                                                                                                                                                 
+LABEL maintainer="i@indexyz.me"                                                                                                                                                                     
+# 去除  pdo pdo_mysql                                                                                                                                                                               
+WORKDIR /var/www/html                                                                                                                                                                               
+RUN  apk --update --no-cache add wget  unzip && \                                                                                                                                                   
+  docker-php-ext-install pdo pdo_mysql bcmath  && \                                                                                                                                                 
+  mkdir -p /usr/src/typecho &&\                                                                                                                                                                     
+  wget  https://github.com/typecho/typecho/archive/master.zip -O master.zip && \                                                                                                                    
+   unzip -d /usr/src/typecho/ master.zip && \                                                                                                                                                       
+  rm -rf /tmp/*                                                                                                                                                                                     
+COPY entrypoint.sh /entrypoint.sh                                                                                                                                                                   
+RUN chmod +x /entrypoint.sh                                                                                                                                                                         
+VOLUME /var/www/html                                                                                                                                                                                
+EXPOSE 80                                                                                                                                                                                           
+ENTRYPOINT ["/entrypoint.sh" ]                                                                                                                                                                      
+CMD [ "php", "-S", "0000:80", "-t", "/var/www/html" ]         
