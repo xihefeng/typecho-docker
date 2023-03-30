@@ -10,7 +10,11 @@ RUN  apk --update --no-cache add wget  unzip && \
   rm -rf /tmp/*                                                                                                                                                                                     
 COPY entrypoint.sh /entrypoint.sh                                                                                                                                                                   
 RUN chmod +x /entrypoint.sh                                                                                                                                                                         
-VOLUME /var/www/html                                                                                                                                                                                
+VOLUME /var/www/html     
+ENV \
+    PORT=80 \
+    HOST=0.0.0.0
+ 
 EXPOSE 80                                                                                                                                                                                           
 ENTRYPOINT ["/entrypoint.sh" ]                                                                                                                                                                      
 CMD [ "php", "-S", "0.0.0.0:80", "-t", "/var/www/html" ]         
