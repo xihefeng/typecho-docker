@@ -13,4 +13,4 @@ RUN chmod +x /entrypoint.sh
 VOLUME /var/www/html                                                                                                                                                                                
 EXPOSE 80                                                                                                                                                                                           
 ENTRYPOINT ["/entrypoint.sh" ]                                                                                                                                                                      
-CMD [ "php", "-S", "0000:80", "-t", "/var/www/html" ]         
+CMD [ "php", "-S", "0.0.0.0:80", "-t", "/var/www/html" ]         
